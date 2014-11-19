@@ -21,10 +21,11 @@ brew install source-highlight
 brew install scala
 brew install typesafe-activator
 brew install groovy
-brew install vim --enable-python --enable-ruby --enable-perl
+brew install vim --enable-pythoninterp --enable-rubyinterp --enable-perlinterp
 brew install macvim --env-std --override-system-vim
 
 # Setup Python packages
+export PATH="/usr/local/bin:$PATH"
 echo "Installing necessary Python packages"
 pip install django
 pip install tornado
@@ -83,3 +84,8 @@ cp ./vimrc ~/.vimrc
 mkdir -p ~/.vim/syntax
 cp ./django.vim ~/.vim/syntax/
 cp ./htmldjango.vim ~/.vim/syntax/
+
+# Setup git
+echo "Setting up git"
+git config --global user.name "Rongzhou Shen"
+git config --global user.email "anticlockwise5@gmail.com"
