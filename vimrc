@@ -17,6 +17,10 @@ set showcmd
 set cursorline
 set laststatus=2
 set backspace=2 " make backspace work like most other apps
+set t_Co=256
+
+set guioptions-=r
+set guifont=Inconsolata\ for\ Powerline:h14
 
 filetype indent on
 
@@ -58,20 +62,13 @@ noremap <C-h> <C-w><C-h>
 noremap <C-t> :TagbarToggle<CR>
 " }}}
 
-" {{{ Powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-let g:Powerline_symbols='fancy'
-" }}}
-"
 " {{{ Python mode configurations
 let g:pymode_rope=0
 
 let g:pymode_doc = 1
 let g:pymode_doc_key = 'K'
 
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 let g:pymode_lint_checker = "pyflakes,pep8"
 
 let g:pymode_lint_write = 1
@@ -90,12 +87,16 @@ let g:pymode_folding = 0
 
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
+
+nmap <Leader>R :PymodeRun<cr>
 " }}}
 
 " {{{ Syntastic configurations
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['scala'] } " Turning off scala checking
+                           \ 'passive_filetypes': ['scala', 'rst'] } " Turning off scala checking
 " }}}
 
 " {{{ Django settings
@@ -130,6 +131,23 @@ nnoremap <silent> <buffer> <leader>jf :JavaFormat<cr>
 let g:snips_author = "anticlockwise5"
 let g:snips_email = "anticlockwise5@gmail.com"
 let g:snips_github="https://github.com/anticlockwise"
+let g:SuperTabDefaultCompletionType = "context"
 " }}}
 
-colorscheme badwolf
+" {{{ EasyMotion configuration
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_startofline = 0
+" }}}
+
+set background=dark
+colorscheme solarized
