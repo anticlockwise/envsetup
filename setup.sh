@@ -19,10 +19,10 @@ brew install ctags
 brew install node
 brew install source-highlight
 brew install scala
+brew install tmux
 brew install typesafe-activator
 brew install groovy
 brew install vim --enable-pythoninterp --enable-rubyinterp --enable-perlinterp
-brew install macvim --env-std --override-system-vim
 
 # Setup Python packages
 export PATH="/usr/local/bin:$PATH"
