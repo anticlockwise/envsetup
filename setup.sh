@@ -35,6 +35,18 @@ pip install numpy
 pip install scipy
 pip install ipython
 pip install jedi
+pip install pyflakes
+pip install pep8
+
+# Setup Node packages
+echo "Install necessary packages and tools for node"
+npm install -g express
+npm install -g cssmin
+npm install -g jshint
+npm install -g jslint
+npm install -g uglify-js
+npm install -g bower
+npm install -g grunt-cli
 
 # Setup Powerline
 echo "Installing Powerline"
