@@ -69,17 +69,15 @@ let g:pymode_doc = 1
 let g:pymode_doc_key = 'K'
 
 let g:pymode_lint = 0
-let g:pymode_lint_checker = "pyflakes,pep8"
-
-let g:pymode_lint_write = 1
+let g:pymode_lint_write = 0
 
 let g:pymode_virtualenv = 1
 
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_key = '<leader>b'
 
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
+let g:pymode_syntax = 0
+let g:pymode_syntax_all = 0
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
@@ -93,6 +91,7 @@ nmap <Leader>R :PymodeRun<cr>
 
 " {{{ Syntastic configurations
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_python_pep8_args = '--max-line-length=160'
 let g:syntastic_javascript_checkers = ['jslint', 'jshint']
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
@@ -120,11 +119,11 @@ let delimitMate_expand_cr = 1
 " }}}
 
 " {{{ Eclim mappings
-nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
-nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
-nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
-nnoremap <silent> <buffer> <leader>ji :JavaImportOrganize<cr>
-nnoremap <silent> <buffer> <leader>jf :JavaFormat<cr>
+nmap <leader>i :JavaImport<cr>
+nmap <leader>d :JavaDocSearch -x declarations<cr>
+nmap <cr> :JavaSearchContext<cr>
+nmap <leader>ji :JavaImportOrganize<cr>
+nmap <leader>jf :JavaFormat<cr>
 " }}}
 
 " {{{ SnipMate configurations
@@ -148,6 +147,9 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 let g:EasyMotion_startofline = 0
 " }}}
+
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#show_call_signatures="0"
 
 set background=dark
 colorscheme solarized

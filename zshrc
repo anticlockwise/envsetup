@@ -26,7 +26,7 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -45,20 +45,24 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bower python pylint pip scala brew)
-
-source $ZSH/oh-my-zsh.sh
+plugins=(git ruby python pip heroku virtualenv django)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -66,20 +70,19 @@ export EDITOR='vim'
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+export TERM=xterm-256color
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-export ECLIPSE_HOME=/Applications/eclipse
-
+#
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-if [ -f /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]; then
-    source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+if [[ -r ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source ~/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
-# less + source highlight to allow highlighting in source code
-# when using less
-export LESS=' -R'
-alias lessh='LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s" less -M '
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
