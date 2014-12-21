@@ -1,0 +1,49 @@
+{
+	"segments": {
+		"right": [
+            {
+                "function": "powerline_extras.segments.extra.players.moc",
+                "name": "player",
+                "args": {
+                    "format": "{state_symbol} {artist} - {title} ({elapsed}/{total})"
+                },
+                "priority": 10
+            },
+            {
+                "function": "powerline_extras.segments.extra.volume.volume",
+                "priority": 10
+            },
+			{
+				"function": "powerline.segments.common.bat.battery",
+                "priority": 30
+			},
+			{
+				"function": "powerline.segments.common.sys.cpu_load_percent",
+                "priority": 30
+			},
+			{
+				"function": "powerline.segments.common.net.network_load",
+                "priority": 40
+			},
+			{
+				"function": "powerline.segments.common.mail.email_imap_alert",
+				"priority": 10,
+				"args": {
+					"username": "anticlockwise5@gmail.com",
+					"password": "gpshcbjlwbzsgcuc"
+				}
+			},
+			{
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M",
+					"istime": true
+				}
+			}
+		]
+	}
+}
