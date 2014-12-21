@@ -61,18 +61,11 @@ if [ $answer == "y" ]; then
     echo "Installing necessary ubuntu packages"
     sudo add-apt-repository -y ppa:klaus-vormweg/awesome
     sudo apt-get -y -qq update
-    sudo apt-get install -y -qq awesome
-    sudo apt-get install -y -qq mutt
-    sudo apt-get install -y -qq moc
-    sudo apt-get install -y -qq weechat
-    sudo apt-get install -y -qq bitlbee
-    sudo apt-get install -y -qq vim
-    sudo apt-get install -y -qq tmux
-    sudo apt-get install -y -qq imagemagick
-    sudo apt-get install -y -qq graphviz
-    sudo apt-get install -y -qq urlscan
-    sudo apt-get install -y -qq python-pip
-    sudo apt-get install -y -qq exuberant-ctags
+
+    for package in `cat ubuntu_packages`; do
+        echo "Installing $package"
+        sudo apt-get install -y -qq $package
+    done
 
     echo "Installing necessary Python packages"
     pip install --user powerline-status
@@ -117,6 +110,7 @@ if [ $answer == "y" ]; then
     pip install --user ./powerline_extras
 
     echo "============ INSTALLATION COMPLETED =============="
+    echo "Please logout and log back in to see changes"
 else
     echo "Good bye!"
 fi
