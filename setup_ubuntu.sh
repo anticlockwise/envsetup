@@ -87,6 +87,9 @@ if [ $answer == "y" ]; then
     echo "Generating configurations"
     python generate_configs.py
 
+    echo "Configuring awesome window manager"
+    cp -r ./awesome ~/.config/awesome
+
     echo "Installing VIM plugins"
 
     ./install_vim_plugins.sh
@@ -109,6 +112,9 @@ if [ $answer == "y" ]; then
 
     echo "Setting up tmux"
     cp configs/tmux.conf $HOME/.tmux.conf
+
+    echo "Installing extra powerline segments"
+    pip install --user ./powerline_extras
 
     echo "============ INSTALLATION COMPLETED =============="
 else
