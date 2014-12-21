@@ -29,6 +29,9 @@ echo "Installing oh-my-zsh"
 curl -L http://install.ohmyz.sh | sh
 cp ./configs/zshrc ~/.zshrc
 
+echo "Setting up powerline"
+cp -r configs/powerline ~/.config/powerline
+
 # Setup VIM
 ./install_vim_plugins.sh
 ./install_nodejs_packages.sh

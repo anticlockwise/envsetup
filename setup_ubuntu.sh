@@ -70,6 +70,9 @@ if [ $answer == "y" ]; then
     echo "Cloning solarized colorscheme"
     git clone git://github.com/altercation/solarized.git
 
+    echo "Setting up powerline"
+    cp -r configs/powerline ~/.config/powerline
+
     echo "Setting up mutt with solarized colorscheme"
     mkdir $HOME/.mutt
     cp ./configs/muttrc $HOME/.muttrc
@@ -83,6 +86,7 @@ if [ $answer == "y" ]; then
     pip install --user ./powerline_extras
 
     echo "============ INSTALLATION COMPLETED =============="
+    echo "NOTE: Weechat and Bitlbee are not set up yet, those will require manual configuration, please refer to their corresponding documentation for setups."
     echo "Please logout and log back in to see changes"
 else
     echo "Good bye!"
