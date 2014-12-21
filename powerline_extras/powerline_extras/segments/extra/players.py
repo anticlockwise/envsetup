@@ -1,3 +1,11 @@
+"""
+Provides more powerline segments for current track information from music
+players. Current supported music players are: MOC
+
+Author: anticlockwise5
+"""
+
+
 from powerline.lib.shell import run_cmd
 from powerline.segments import with_docstring
 from powerline.segments.common.players import PlayerSegment, _convert_state,\

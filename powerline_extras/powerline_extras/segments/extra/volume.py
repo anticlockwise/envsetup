@@ -1,3 +1,10 @@
+"""
+Provides a powerline segment for displaying current volume levels
+
+Author: anticlockwise5
+"""
+
+
 from powerline.segments import Segment, with_docstring
 from powerline.lib.shell import run_cmd
 
@@ -8,7 +15,8 @@ VOLUME_PATTERN = re.compile(r'\[(\d+%)\]')
 
 class VolumeSegment(Segment):
     """
-    Powerline segment for displaying the current volume
+    Powerline segment for displaying the current volume. Current volumes are
+    retrieved from amixer output on the 'Master' device by default.
     """
     def __call__(self, device='Master', **kwargs):
         amixer_stats = self.get_amixer_stats(device, **kwargs)
