@@ -16,3 +16,6 @@ libmysqlclient-dev
 python-dev
 python-pip
 exuberant-ctags
+libblas-dev
+liblapack-dev
+gfortran
