@@ -1,0 +1,55 @@
+set imap_user = "${gmail_email}"
+set imap_pass = "${gmail_pass}"
+
+set smtp_url = "smtp://${gmail_user}@smtp.gmail.com:587/"
+set smtp_pass = "${gmail_pass}"
+set from = "${gmail_email}"
+set realname= "${real_name}"
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed="+[Gmail]/Drafts"
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+set move = no
+
+set pager_index_lines=10
+set pager_context=3
+set pager_stop
+set menu_scroll
+set tilde
+unset markers
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+set imap_check_subscribed
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+
+# Key bindings
+bind index G last-entry
+bind index gg first-entry
+
+bind pager j next-line
+bind pager k previous-line
+
+macro index,pager \Cb '|urlscan<enter>' 'Follow links with urlview'
+
+source ${home_dir}/.mutt/mutt-colors-solarized-dark-256.muttrc

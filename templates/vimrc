@@ -127,9 +127,9 @@ nmap <leader>jf :JavaFormat<cr>
 " }}}
 
 " {{{ SnipMate configurations
-let g:snips_author = "anticlockwise5"
-let g:snips_email = "anticlockwise5@gmail.com"
-let g:snips_github="https://github.com/anticlockwise"
+let g:snips_author = "${real_name} (${github_user})"
+let g:snips_email = "${gmail_email}"
+let g:snips_github="https://github.com/${github_user}"
 let g:SuperTabDefaultCompletionType = "context"
 " }}}
 
