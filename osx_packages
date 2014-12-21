@@ -1,0 +1,13 @@
+git
+wget
+python
+mysql
+couchdb
+ctags
+node
+source-highlight
+scala
+tmux
+typesafe-activator
+groovy
+vim --enable-pythoninterp --enable-rubyinterp --enable-perlinterp

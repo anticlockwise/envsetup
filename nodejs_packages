@@ -1,0 +1,7 @@
+express
+cssmin
+jshint
+jslint
+uglify-js
+bower
+grunt-cli

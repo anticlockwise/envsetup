@@ -1,0 +1,15 @@
+powerline-status
+mako
+psutil
+django
+tornado
+virtualenv
+mysql-python
+numpy
+scipy
+ipython
+jedi
+pyflakes
+pep8
+virtualenv
+docutils

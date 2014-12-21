@@ -6,46 +6,19 @@
 echo "Starting to setup your ubuntu"
 echo "This setup script will install the following on your ubuntu:"
 echo "List of ubuntu packages:"
-echo "* awesome"
-echo "* mutt"
-echo "* moc"
-echo "* weechat"
-echo "* bitlbee"
-echo "* vim"
-echo "* tmux"
-echo "* imagemagick"
-echo "* graphviz"
-echo "* urlscan"
-echo "* python-pip"
-echo "* exuberant-ctags"
+for package in `cat ubuntu_packages`; do
+    echo "* $package"
+done
 
 echo "List of Python packages:"
-echo "* powerline-status"
-echo "* psutil"
-echo "* jedi"
-echo "* virtualenv"
+for package in `cat python_packages`; do
+    echo "* $package"
+done
 
 echo "List of vim plugins:"
-echo "* pathogen"
-echo "* bufexplorer"
-echo "* indentLine"
-echo "* snipmate"
-echo "* delimitmate"
-echo "* supertab"
-echo "* syntastic"
-echo "* easymotion"
-echo "* vim-surround"
-echo "* vim-virtualenv"
-echo "* NERDTree"
-echo "* NERDCommenter"
-echo "* Fugitive"
-echo "* vim-airline"
-echo "* ctrlp"
-echo "* matchit"
-echo "* tagbar"
-echo "* tabularize"
-echo "* python-mode"
-echo "* jedi-vim"
+for plugin in `cat vim_plugins`; do
+    echo "* $plugin"
+done
 
 echo "List of other utilities:"
 echo "* oh-my-zsh"
@@ -68,12 +41,10 @@ if [ $answer == "y" ]; then
     done
 
     echo "Installing necessary Python packages"
-    pip install --user powerline-status
-    pip install --user mako
-    pip install --user psutil
-    pip install --user docutils
-    pip install --user virtualenv
-    pip install --user jedi
+    for package in `cat python_packages`; do
+        echo "Installing $package"
+        pip install --user $package
+    done
 
     export PATH="$HOME/.local/bin:$PATH"
 
@@ -84,8 +55,10 @@ if [ $answer == "y" ]; then
     cp -r ./awesome ~/.config/awesome
 
     echo "Installing VIM plugins"
-
     ./install_vim_plugins.sh
+
+    echo "Installing NodeJS packages"
+    ./install_nodejs_plugins.sh
 
     echo "Installing other utilities"
 

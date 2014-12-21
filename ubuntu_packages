@@ -1,4 +1,5 @@
 awesome
+git
 mutt
 moc
 weechat
@@ -8,5 +9,10 @@ tmux
 imagemagick
 graphviz
 urlscan
+mysql-server
+mysql-client
+couchdb
+libmysqlclient-dev
+python-dev
 python-pip
 exuberant-ctags
