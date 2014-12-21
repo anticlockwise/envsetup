@@ -43,6 +43,6 @@ cp ./configs/vimrc ~/.vimrc
 
 mkdir -p ~/.vim/syntax
 mkdir -p ~/.vim/ftplugin
-cp ./django.vim ~/.vim/syntax/
-cp ./htmldjango.vim ~/.vim/syntax/
-cp ./ftplugin_django.vim ~/.vim/ftplugin/
+cp ./vim/django.vim ~/.vim/syntax/
+cp ./vim/htmldjango.vim ~/.vim/syntax/
+cp ./vim/ftplugin_django.vim ~/.vim/ftplugin/
