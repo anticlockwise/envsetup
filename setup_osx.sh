@@ -31,6 +31,7 @@ cp ./configs/zshrc ~/.zshrc
 
 echo "Setting up powerline"
 cp -r configs/powerline ~/.config/powerline
+echo "NOTE: Powerline fonts are not setup, please go to https://powerline.readthedocs.org/en/latest/installation/osx.html for installation of fonts on OSX"
 
 # Setup VIM
 ./install_vim_plugins.sh
