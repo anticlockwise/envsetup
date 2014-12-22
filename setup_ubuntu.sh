@@ -3,6 +3,8 @@
 # This script is designed to work only on an ubuntu box, so if you're trying to
 # run it on a different linux distribution, it may fail badly!
 
+set -e
+
 echo "Starting to setup your ubuntu"
 echo "This setup script will install the following on your ubuntu:"
 echo "List of ubuntu packages:"

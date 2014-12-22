@@ -5,3 +5,4 @@ configs/zshrc
 venv/
 solarized/
 *.swp
+*.pyc

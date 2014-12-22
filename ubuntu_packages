@@ -19,3 +19,5 @@ exuberant-ctags
 libblas-dev
 liblapack-dev
 gfortran
+nodejs
+npm
