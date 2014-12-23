@@ -5,6 +5,14 @@
 
 set -e
 
+release=`lsb_release -r | cut -f2`
+if [ ! $release = "12.04" ] && [ ! $release = "14.10" ]; then
+    echo "Supported Ubuntu versions are: 12.04 and 14.10"
+    exit 1
+fi
+
+echo "Ubuntu version: $release"
+
 echo "Starting to setup your ubuntu"
 echo "This setup script will install the following on your ubuntu:"
 echo "List of ubuntu packages:"
@@ -54,7 +62,11 @@ if [ $answer == "y" ]; then
     python generate_configs.py
 
     echo "Configuring awesome window manager"
-    cp -r ./awesome ~/.config/awesome
+    if [ $release = "12.04" ]; then
+        cp -r ./awesome-3.4 ~/.config/awesome
+    else
+        cp -r ./awesome-3.5 ~/.config/awesome
+    fi
 
     echo "Installing VIM plugins"
     ./install_vim_plugins.sh
