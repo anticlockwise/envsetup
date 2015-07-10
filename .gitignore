@@ -1,5 +1,4 @@
 configs/muttrc
-configs/vimrc
 configs/tmux.conf
 configs/zshrc
 venv/
