@@ -1,6 +1,3 @@
-configs/muttrc
-configs/tmux.conf
-configs/zshrc
 venv/
 solarized/
 *.swp
