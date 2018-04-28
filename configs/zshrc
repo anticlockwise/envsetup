@@ -1,34 +1,25 @@
-source ~/.local/antigen.zsh
-source /apollo/env/envImprovement/var/zshrc
+source $HOME/.config/antigen.zsh
 
 antigen use oh-my-zsh
 
-antigen bundle zsh-users/zsh-syntax-highlighting
+# Bundles from the default repo
 antigen bundle git
 antigen bundle git-extras
-antigen bundle python
-
+antigen bundle heroku
+antigen bundle pip
+antigen bundle command-not-found
 antigen bundle vi-mode
-antigen bundle django
 antigen bundle tmux
 
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
 antigen theme ys
 
-alias gups="git pull --rebase --stat"
+antigen apply
 
 export TERM=xterm-256color
-[ -n "$TMUX"  ] && export TERM=screen-256color
 
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_FIXTERM=true
-
-BASE16_SHELL=$HOME/.config/base16-shell/scripts/base16-eighties.sh
-[[ -s BASE16_SHELL ]] && source $BASE16_SHELL
-
-# ALIASES
-alias bb='brazil-build'
-alias bbc='brazil-build clean'
-alias bbr='brazil-build release'
-alias bba='brazil-build apollo-pkg'
-alias brazil-octane='/apollo/env/OctaneBrazilTools/bin/brazil-octane'
-# alias btt='/apollo/env/BrazilThirdPartyTool/bin/brazil-third-party-tool'
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"

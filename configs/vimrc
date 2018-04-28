@@ -10,16 +10,16 @@ set smarttab
 set hidden
 " }}}
 
-" {{{ UI Configurations
+" {{{ UI configurations
+set cc=120
 set number
 set showcmd
 set cursorline
 set laststatus=2
-set backspace=2 " make backspace work like most other apps
+set backspace=2
 set t_Co=256
 
 set guioptions-=r
-set guifont=Inconsolata\ for\ Powerline:h14
 
 set wildmenu
 set lazyredraw
@@ -34,39 +34,28 @@ set hlsearch
 " {{{ Folding configurations
 set foldenable
 set foldlevelstart=10
-set foldnestmax=10
 set foldmethod=marker
 " }}}
 
-" {{{ Language specific configurations
-" {{{ Python
-au FileType py set autoindent
-autocmd FileType python setlocal completeopt-=preview
-augroup vimrc_autocmds
-   "autocmd!
-   "" highlight characters past column 120
-   "autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
-   "autocmd FileType python match Excess /\%120v.*/
-   "autocmd FileType python set nowrap
-augroup END
-" }}}
-
-au FileType rst set shiftwidth=3 tabstop=3 softtabstop=3
-
 " {{{ Shortcut mappings
 noremap <C-j> <C-w><C-j>
-noremap <C-l> <C-w><C-l>
 noremap <C-k> <C-w><C-k>
+noremap <C-l> <C-w><C-l>
 noremap <C-h> <C-w><C-h>
 noremap <C-t> :TagbarToggle<CR>
 " }}}
 
-set nocompatible
-filetype off
 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
 Plugin 'tpope/vim-fugitive'
@@ -74,7 +63,6 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'Raimondi/delimitMate'
-Plugin 'Yggdroot/indentLine'
 Plugin 'tmhedberg/matchit'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
@@ -91,42 +79,35 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'pangloss/vim-javascript'
-Plugin 'derekwyatt/vim-scala'
-"Plugin 'mhinz/vim-signify'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
 
-call vundle#end()
-
-filetype plugin indent on
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " {{{ Python mode configurations
-let g:pymode_rope = 0
-let g:pymode_options_max_line_length = 120
+let g:pymode_rope=0
 
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
+let g:pymode_doc=1
+let g:pymode_doc_key='K'
 
-let g:pymode_lint = 0
+let g:pymode_lin=0
 
-let g:pymode_virtualenv = 1
+let g:pymode_virtualenv=1
 
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>b'
+let g:pymode_breakpoint=1
+let g:pymode_breakpoint_key='<leader>b'
 
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
+let g:pymode_syntax=1
+let g:pymode_syntax_all=1
 
-let g:pymode_folding = 0
+let g:pymode_syntax_indent_errors=g:pymode_syntax_all
+let g:pymode_syntax_space_errors=g:pymode_syntax_all
+
+let g:pymode_folding=0
 
 nmap <Leader>R :PymodeRun<cr>
 " }}}
@@ -135,71 +116,20 @@ nmap <Leader>R :PymodeRun<cr>
 let g:syntastic_auto_loc_list=1
 let g:syntastic_loc_list_height=5
 
-" let g:syntastic_python_flake8_args = '--ignore=E501'
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['scala', 'rst'] } " Turning off scala checking
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,E124'
 " }}}
 
-" {{{ Django settings
-" Surround plugin configurations
-let b:surround_{char2nr("v")} = "{{ \r }}"
-let b:surround_{char2nr("{")} = "{{ \r }}"
-let b:surround_{char2nr("%")} = "{% \r %}"
-let b:surround_{char2nr("b")} = "{% block \1block name: \1 %}\r{% endblock \1\1 %}"
-let b:surround_{char2nr("i")} = "{% if \1condition: \1 %}\r{% endif %}"
-let b:surround_{char2nr("w")} = "{% with \1with: \1 %}\r{% endwith %}"
-let b:surround_{char2nr("f")} = "{% for \1for loop: \1 %}\r{% endfor %}"
-let b:surround_{char2nr("c")} = "{% comment %}\r{% endcomment %}"
-" }}}
-
-" {{{ Vertical line indentation
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#09AA08'
-let g:indentLine_char = '│'
-let g:indentLine_fileTypeExclude = ['tex', 'markdown', 'json']
-
-let delimitMate_expand_cr = 1
-" }}}
-
-" {{{ SnipMate configurations
-" let g:snips_author = AUTHOR
-" let g:snips_email = EMAIL
-let g:SuperTabDefaultCompletionType = "context"
-" }}}
-
-" {{{ EasyMotion configuration
-map  / <Plug>(easymotion-sn)
+map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+map n <Plug>(easymotion-next)
+map N <Plug>(easymotion-prev)
 
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+let g:EasyMotion_startofline=0
 
-let g:EasyMotion_startofline = 0
-" }}}
-
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#show_call_signatures="0"
-
-" {{{ Undotree key mappings
 nnoremap <Leader>tt :UndotreeToggle<cr>
-" }}}
 
-"if executable("ag")
-    "let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-"endif
+let airline_theme='base16'
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
-
-let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter'
-
-let g:base16_shell_path="/home/" . $USER . "/.config/base16-shell/scripts"
-let base16colorspace=256
-colorscheme base16-eighties
+source ~/.vimrc_background
