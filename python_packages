@@ -1,10 +1,8 @@
-powerline-status
 mako
 psutil
 django
 tornado
 virtualenv
-mysql-python
 numpy
 scipy
 ipython

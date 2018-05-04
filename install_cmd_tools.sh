@@ -1,13 +1,17 @@
+#!/bin/zsh
+
 echo "Installing antigen for zsh"
 mkdir -p ~/.config
-mkdir -p ~/.local
 
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > "~/.local/antigen.zsh"
+curl -L git.io/antigen > "$HOME/.config/antigen.zsh"
 
 echo "Installing base16 colors"
 git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 
 cp configs/zshrc ~/.zshrc
+
+source ~/.zshrc
+base16_eighties # Install the eighties base16 color scheme
 
 echo "Installing Vundle for VIM"
 mkdir -p ~/.vim/bundle
@@ -22,5 +26,3 @@ vim +PluginInstall +qall
 echo ""
 echo "========================="
 echo "Everything has been installed to the correct place, please execute the following commands:"
-echo "source ~/.zshrc"
-echo "antigen apply"

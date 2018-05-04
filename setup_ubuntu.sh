@@ -6,8 +6,8 @@
 set -e
 
 release=`lsb_release -r | cut -f2`
-if [ ! $release = "12.04" ] && [ ! $release = "14.10" ]; then
-    echo "Supported Ubuntu versions are: 12.04 and 14.10"
+if [ ! $release = "18.04" ]; then
+    echo "Supported Ubuntu versions are: 18.04"
     exit 1
 fi
 
@@ -31,8 +31,8 @@ for plugin in `cat vim_plugins`; do
 done
 
 echo "List of other utilities:"
-echo "* oh-my-zsh"
-echo "* solarized colorschemes"
+echo "* zsh antigen"
+echo "* base16 colorschemes"
 
 echo -n "Do you want to continue? [y/N] "
 read answer
@@ -42,8 +42,6 @@ if [ $answer == "y" ]; then
     echo "Please give me sudo permissions for your username."
 
     echo "Installing necessary ubuntu packages"
-    sudo add-apt-repository -y ppa:klaus-vormweg/awesome
-    sudo apt-get -y -qq update
 
     for package in `cat ubuntu_packages`; do
         echo "Installing $package"
@@ -58,21 +56,11 @@ if [ $answer == "y" ]; then
 
     export PATH="$HOME/.local/bin:$PATH"
 
-    echo "Generating configurations"
-    python generate_configs.py
-
-    echo "Configuring awesome window manager"
-    if [ $release = "12.04" ]; then
-        cp -r ./awesome-3.4 ~/.config/awesome
-    else
-        cp -r ./awesome-3.5 ~/.config/awesome
-    fi
-
     echo "Installing VIM plugins"
-    ./install_vim_plugins.sh
+    ./install_cmd_tools.sh
 
     echo "Installing NodeJS packages"
-    ./install_nodejs_plugins.sh
+    ./install_nodejs_packages.sh
 
     echo "Installing other utilities"
 
@@ -81,10 +69,7 @@ if [ $answer == "y" ]; then
     curl -L http://install.ohmyz.sh | sh
     cp ./configs/zshrc ~/.zshrc
 
-    echo "Cloning solarized colorscheme"
-    git clone git://github.com/altercation/solarized.git
-
-    echo "Setting up powerline"
+    echo "Setting up powerline fonts"
     wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
     wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
     mkdir ~/.fonts/
@@ -92,23 +77,6 @@ if [ $answer == "y" ]; then
     fc-cache -vf ~/.fonts/
     mkdir -p ~/.config/fontconfig/conf.d/
     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
-    cp -r configs/powerline ~/.config/powerline
-
-    echo "Setting up mutt with solarized colorscheme"
-    mkdir $HOME/.mutt
-    cp ./configs/muttrc $HOME/.muttrc
-    chmod 644 $HOME/.muttrc
-    cp solarized/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc $HOME/.mutt/
-
-    echo "Setting up tmux"
-    cp configs/tmux.conf $HOME/.tmux.conf
-
-    echo "Installing extra powerline segments"
-    pip install --user ./powerline_extras
-
-    echo "============ INSTALLATION COMPLETED =============="
-    echo "NOTE: Weechat and Bitlbee are not set up yet, those will require manual configuration, please refer to their corresponding documentation for setups."
-    echo "Please logout and log back in to see changes"
 else
     echo "Good bye!"
 fi
